@@ -60,6 +60,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         System.out.println(">>> X-User-Email: " + email);
         System.out.println(">>> X-User-Role: " + role);
 
+        if (path.startsWith("/admin") && !"ADMIN".equals(role)) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+
         // Full wrapper — all three methods required for gateway to pick up headers
         HttpServletRequestWrapper mutatedRequest = new HttpServletRequestWrapper(request) {
 

@@ -1,3 +1,6 @@
 .idea/
 *.yaml
 application.yaml
+
+# Environment secrets — never commit
+.env
